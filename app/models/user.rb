@@ -1,9 +1,12 @@
 require 'openssl'
 
 class User < ApplicationRecord
+
   ITERATIONS = 20_000
   DIGEST = OpenSSL::Digest.new('SHA256')
   USERNAME_MAX_LENGTH = 40
+
+  attr_accessor :password
 
   has_many :questions, dependent: :destroy
 
@@ -13,14 +16,8 @@ class User < ApplicationRecord
   validates :password, presence: true, on: :create
   validates :password, confirmation: true
 
-  attr_accessor :password
-
   before_validation :downcase_email_and_username
   before_save :encrypt_password
-
-  def self.hash_to_string(password_hash)
-    password_hash.unpack1('H*')
-  end
 
   def self.authenticate(email, password)
     user = find_by(email: email)
@@ -29,6 +26,10 @@ class User < ApplicationRecord
        .hash_to_string(OpenSSL::PKCS5.pbkdf2_hmac(password, user.password_salt, ITERATIONS, DIGEST.length, DIGEST))
       user
     end
+  end
+
+  def self.hash_to_string(password_hash)
+    password_hash.unpack1('H*')
   end
 
   private
