@@ -3,11 +3,13 @@ require 'openssl'
 class User < ApplicationRecord
   ITERATIONS = 20_000
   DIGEST = OpenSSL::Digest.new('SHA256')
+  USERNAME_MAX_LENGTH = 40
 
-  has_many :questions
+  has_many :questions, dependent: :destroy
 
-  validates :email, :username, presence: true
-  validates :email, :username, uniqueness: true
+  validates :username, length: { maximum: USERNAME_MAX_LENGTH },
+                       presence: true, uniqueness: true, format: { with: /\A\w+\z/ }
+  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, presence: true, on: :create
   validates :password, confirmation: true
 
