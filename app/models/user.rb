@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   attr_accessor :password
 
-  before_validation :downcase_username
+  before_validation :downcase_email_and_username
   before_save :encrypt_password
 
   def self.hash_to_string(password_hash)
@@ -33,7 +33,8 @@ class User < ApplicationRecord
 
   private
 
-  def downcase_username
+  def downcase_email_and_username
+    email&.downcase!
     username&.downcase!
   end
 
