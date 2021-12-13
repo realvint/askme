@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2021_12_11_160220) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["body"], name: "index_questions_on_body", unique: true
+    t.index ["body"], name: "index_questions_on_body"
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
