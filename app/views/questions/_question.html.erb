@@ -1,0 +1,15 @@
+<div class="question">
+  <div class="question-content">
+    <div class="question-body text-lead">
+      <%= question.body %>
+    </div>
+    <% if question.answer.present? %>
+      <div class="question answer text-lead">
+        <%= question.answer if question.answer.present? %>
+      </div>
+    <% end %>
+    <div class="question-date">
+      <%= question.created_at.strftime('%d %b %Y') %>
+    </div>
+  </div>
+</div>
