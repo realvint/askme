@@ -1,6 +1,6 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbolinks:load', () => {
   const askButton = document.getElementById('ask-button')
-  askButton.addEventListener('click', formHider)
+ if(askButton) askButton.addEventListener('click', formHider)
 })
 
 const formHider = (event) => {
