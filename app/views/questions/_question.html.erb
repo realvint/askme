@@ -15,12 +15,12 @@
       <%= l(question.created_at, format: :short) %>
     </div>
   </div>
-
   <% if question.user == current_user %>
 
     <% edit_icon = question.answer.blank? ? 'reply' : 'pencil-alt' %>
 
     <div class="question-actions">
+      <i class="fas fa-gem fa-spin"></i>
       <%= link_to fa_icon(edit_icon), edit_question_path(question) %>
       <%= link_to fa_icon('trash'), question_path(question),
                   method: :delete, data: { confirm: 'Точно удалить вопрос?' } %>
