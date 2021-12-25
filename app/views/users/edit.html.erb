@@ -21,6 +21,11 @@
         <%= f.text_field :avatar_url, class: 'form-text-field' %>
       </div>
 
+      <div class="form-field">
+        <%= f.label 'Цвет шапки', class: 'form-label' %>
+        <%= f.color_field :header_color, class: 'form-color-field' %>
+      </div>
+
       <div class="buffer-top-large buffer-bottom">
         Если не хотите менять пароль — оставьте эти поля пустыми!
       </div>
@@ -37,6 +42,7 @@
 
       <div class="form-action buffer-top">
         <%= f.submit 'Сохранить', class: 'button button-dark button-small' %>
+        <%= link_to 'Назад', user_path(@user), class: 'button button-dark button-small' %>
       </div>
     <% end %>
   </div>

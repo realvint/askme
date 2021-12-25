@@ -14,6 +14,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, presence: true, on: :create
   validates :password, confirmation: true
+  validates :header_color, format: { with: /\A#([\da-f]{3}){1,2}\z/i }, allow_blank: true
 
   before_validation :downcase_email_and_username
   before_save :encrypt_password
