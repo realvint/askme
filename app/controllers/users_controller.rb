@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[edit show update]
+  before_action :set_user, except: %i[index new create]
   before_action :authorize_user, except: %i[index new create show]
 
   def index
@@ -43,6 +43,11 @@ class UsersController < ApplicationController
     @questions_count = @questions.count
     @answered_questions = @user.questions.count(&:answer)
     @unanswered_questions = @questions_count - @answered_questions
+  end
+
+  def destroy
+    @user.destroy
+    redirect_to root_path, notice: 'Ваш аккаунт успешно удалён.'
   end
 
   private
