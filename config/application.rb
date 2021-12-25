@@ -28,8 +28,6 @@ module Askme
     config.location = 'Europe/Moscow'
 
     config.i18n.default_locale = :ru
-    config.i18n.locale = :ru
-    config.i18n.fallbacks = [:en]
 
     config.generators.system_tests = nil
   end
