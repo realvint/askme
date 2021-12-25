@@ -52,7 +52,17 @@
 <div class="column-3-4">
   <div class="user-questions buffer-both">
     <div class="questions-list">
-      <%= render @questions %>
+      <% if @questions.present? %>
+        <%= render @questions %>
+      <% else %>
+        <div class="question">
+          <div class="question-content">
+            <div class="question-text text-lead">
+              Вопросов пока нет(
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
