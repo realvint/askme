@@ -1,0 +1,19 @@
+ru:
+  activerecord:
+    models:
+      user: 'Пользователь'
+      question: 'Вопрос'
+  helpers:
+    submit:
+      user:
+        create: 'Зарегистрироваться'
+        update: 'Обновить'
+    label:
+      user:
+        email: 'Электропочта'
+        username: 'Ник'
+        name: 'Имя'
+        avatar_url: 'Аватарка ссыль'
+        header_color: 'Шапка цвет'
+        password: 'Пароль'
+        password_confirmation: 'Ещё раз пароль'

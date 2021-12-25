@@ -14,12 +14,4 @@ module UsersHelper
 
     many
   end
-
-  def header_color(user)
-    if user.header_color.present?
-      user.header_color
-    else
-      '#005a55'
-    end
-  end
 end
