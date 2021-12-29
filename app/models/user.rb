@@ -4,7 +4,7 @@ class User < ApplicationRecord
   ITERATIONS = 20_000
   DIGEST = OpenSSL::Digest.new('SHA256')
   USERNAME_MAX_LENGTH = 40
-  VALID_HEADER_COLOR = /\A#(\h{3}){1,2}\z/i
+  VALID_HEADER_COLOR = /\A#\h{3}{1,2}\z/
 
   attr_accessor :password
 
