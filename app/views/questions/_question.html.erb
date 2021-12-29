@@ -13,8 +13,10 @@
 
     <div class="question-date question-flex">
       <%= l(question.created_at, format: :short) %> &nbsp;
-      <% if question.author.present? %>
-        Автор вопроса:&nbsp;<%= link_to "@#{question.author.username}", user_path(question.author.id) %>
+
+      <% author = question.author %>
+      <% if author.present? %>
+        Автор вопроса:&nbsp;<%= link_to "@#{author.username}", user_path(author.id) %>
       <% else %>
         Вопрос задан анонимно
       <% end %>
