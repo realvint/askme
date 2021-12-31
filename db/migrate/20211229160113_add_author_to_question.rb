@@ -1,6 +1,7 @@
 class AddAuthorToQuestion < ActiveRecord::Migration[6.1]
   def change
-    add_column :questions, :author_id, :integer, index: true
-    add_foreign_key :questions, :users, column: :author_id
+    change_table :questions do |t|
+      t.belongs_to :author, foreign_key: { to_table: :users, on_delete: :cascade }
+    end
   end
 end

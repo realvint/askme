@@ -21,7 +21,8 @@ ActiveRecord::Schema.define(version: 2021_12_29_160113) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "author_id"
+    t.bigint "author_id"
+    t.index ["author_id"], name: "index_questions_on_author_id"
     t.index ["body"], name: "index_questions_on_body"
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
@@ -40,5 +41,5 @@ ActiveRecord::Schema.define(version: 2021_12_29_160113) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  add_foreign_key "questions", "users", column: "author_id"
+  add_foreign_key "questions", "users", column: "author_id", on_delete: :cascade
 end
