@@ -4,6 +4,7 @@ class User < ApplicationRecord
   ITERATIONS = 20_000
   DIGEST = OpenSSL::Digest.new('SHA256')
   USERNAME_MAX_LENGTH = 40
+  VALID_HEADER_COLOR = /\A#\h{3}{1,2}\z/
 
   attr_accessor :password
 
@@ -14,6 +15,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, presence: true, on: :create
   validates :password, confirmation: true
+  validates :header_color, format: { with: VALID_HEADER_COLOR }, allow_blank: true
 
   before_validation :downcase_email_and_username
   before_save :encrypt_password

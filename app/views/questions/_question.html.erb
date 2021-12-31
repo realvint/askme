@@ -1,15 +1,36 @@
 <div class="question">
   <div class="question-content">
-    <div class="question-body text-lead">
+
+    <div class="question-text text-lead">
       <%= question.body %>
     </div>
+
     <% if question.answer.present? %>
-      <div class="question answer text-lead">
-        <%= question.answer if question.answer.present? %>
+      <div class="question-answer text-lead">
+        <%= question.answer %>
       </div>
     <% end %>
-    <div class="question-date">
-      <%= question.created_at.strftime('%d %b %Y') %>
+
+    <div class="question-date question-flex">
+      <%= l(question.created_at, format: :short) %> &nbsp;
+
+      <% author = question.author %>
+      <% if author.present? %>
+        Автор вопроса:&nbsp;<%= link_to "@#{author.username}", user_path(author.id) %>
+      <% else %>
+        Вопрос задан анонимно
+      <% end %>
     </div>
+
   </div>
+  <% if question.user == current_user %>
+
+    <% edit_icon = question.answer.blank? ? 'reply' : 'pencil' %>
+
+    <div class="question-actions">
+      <%= link_to fa_icon(edit_icon), edit_question_path(question) %>
+      <%= link_to fa_icon('trash-o'), question_path(question),
+                  method: :delete, data: { confirm: 'Точно удалить вопрос?' } %>
+    </div>
+  <% end %>
 </div>

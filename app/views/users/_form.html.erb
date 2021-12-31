@@ -1,0 +1,33 @@
+<%= form_for @user do |f| %>
+
+  <%= render 'shared/errors', resource: @user  %>
+
+  <div class="form-field">
+    <%= f.label :email, class: 'form-label' %>
+    <%= f.text_field :email, class: 'form-text-field' %>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :username, class: 'form-label' %>
+    <%= f.text_field :username, class: 'form-text-field' %>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :name, class: 'form-label' %>
+    <%= f.text_field :name, class: 'form-text-field' %>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :password, class: 'form-label' %>
+    <%= f.password_field :password, class: 'form-text-field' %>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :password_confirmation, class: 'form-label' %>
+    <%= f.password_field :password_confirmation, class: 'form-text-field' %>
+  </div>
+
+  <div class="form-action">
+    <%= f.submit class: 'button button-small button-dark' %>
+  </div>
+<% end %>
