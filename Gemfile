@@ -12,6 +12,8 @@ gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 5.0'
 gem 'rails-i18n'
 
+gem 'where_exists', '~> 2.0'
+
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end
