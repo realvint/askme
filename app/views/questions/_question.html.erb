@@ -2,7 +2,7 @@
   <div class="question-content">
 
     <div class="question-text text-lead">
-      <%= question.body %>
+      <%= sanitize text_with_hashtag_links(question.body) %>
     </div>
 
     <% if question.answer.present? %>

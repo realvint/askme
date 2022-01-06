@@ -6,13 +6,19 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = Question.new(create_params)
-    @question.author = current_user
+    Questions::Create.call(
+      params: create_params,
+      current_user: current_user
+    ) do |m|
 
-    if @question.save
-      redirect_to user_path(@question.user), notice: 'Вопрос задан'
-    else
-      render :edit
+      m.failure :validation do |result|
+        @question = result[:question]
+        render :edit
+      end
+
+      m.success do |result|
+        redirect_to user_path(result[:question].user), notice: 'Вопрос создан'
+      end
     end
   end
 
