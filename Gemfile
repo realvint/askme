@@ -12,7 +12,6 @@ gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 5.0'
 gem 'rails-i18n'
 
-gem 'dry-transaction', '~> 0.13.3'
 gem 'where_exists', '~> 2.0'
 
 group :development, :test do

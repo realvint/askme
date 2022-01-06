@@ -6,24 +6,20 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    Questions::Create.call(
-      params: create_params,
-      current_user: current_user
-    ) do |m|
+    @question = Question.new(create_params)
+    @question.author = current_user
 
-      m.failure :validation do |result|
-        @question = result[:question]
-        render :edit
-      end
-
-      m.success do |result|
-        redirect_to user_path(result[:question].user), notice: 'Вопрос создан'
-      end
+    if @question.save
+      CreateHashtagService.new(@question).call
+      redirect_to user_path(@question.user), notice: 'Вопрос задан'
+    else
+      render :edit
     end
   end
 
   def update
     if @question.update(update_params)
+      CreateHashtagService.new(@question).call
       redirect_to user_path(@question.user), notice: 'Вопрос сохранен'
     else
       render :edit
