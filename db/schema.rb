@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2021_12_29_160113) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "author_id"
     t.index ["author_id"], name: "index_questions_on_author_id"
+
     t.index ["body"], name: "index_questions_on_body"
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
