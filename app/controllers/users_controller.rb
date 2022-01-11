@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @questions = @user.questions.order(created_at: :desc)
+    @questions = @user.questions.includes(:author).order(created_at: :desc)
 
     @new_question = @user.questions.build
 

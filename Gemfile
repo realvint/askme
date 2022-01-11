@@ -19,6 +19,6 @@ group :development, :test do
 end
 
 group :development do
-  gem 'rack-mini-profiler', '~> 2.0'
+  gem 'bullet', group: 'development'
   gem 'web-console', '>= 4.1.0'
 end
