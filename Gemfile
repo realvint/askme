@@ -19,6 +19,6 @@ group :development, :test do
 end
 
 group :development do
-  gem 'bullet', group: 'development'
+  gem 'bullet'
   gem 'web-console', '>= 4.1.0'
 end
